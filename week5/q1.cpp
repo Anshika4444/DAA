@@ -1,8 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
-void countSort(vector<char>&v,int &max,char &rak)
+void countSort(vector<char>&v)
 {
     vector<int>count(256,0);
+    int max=0;
+    char res;
     for(int i=0;i<v.size();i++)
     {
         int c=v[i];
@@ -10,9 +12,13 @@ void countSort(vector<char>&v,int &max,char &rak)
         if(max<count[c])
         {
             max=count[c];
-            rak=c;
+            res=c;
         }
     }
+    if(max<=1)
+        cout<<"No duplicates found"<<endl;
+    else
+        cout<<res<<"-"<<max<<endl;
 
 }
 int main()
@@ -21,8 +27,7 @@ int main()
     cin>>n;
     for(int i=0;i<n;i++)
     {
-        int s,max=0;
-        char rak;
+        int s;
         cin>>s;
         vector<char>v;
         for(int j=0;j<s;j++)
@@ -31,11 +36,6 @@ int main()
             cin>>ch;
             v.push_back(ch);
         }
-
-        countSort(v,max,rak);
-       if(max<=1)
-        cout<<"No duplicates found"<<endl;
-       else
-        cout<<rak<<"-"<<max<<endl;
+        countSort(v);      
     }
 }
